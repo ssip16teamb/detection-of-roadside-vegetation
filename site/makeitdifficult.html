@@ -44,43 +44,65 @@
                     </ul>
 
                 </div>
-                <div class="obrazek"></div>
+                <div class="obrazek">
+                    <a href="https://github.com/ssip16teamb/ssip16teamb.github.io"><img style="position: absolute; top: 50px; right: 96px; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+                </div>
                 <div class="decoration2"></div>
                 <div class="content">
-                    <div class="tekst">
+                    <div class="tekst content-wrapper">
                         <h1>Make it difficult</h1>
-                        <p>   <p align="center"><b>Pre - processing</b></p>
-                        <p align="justify"><p> Preprocessing is an significant and diverse set of image preparation steps. It is used for eliminate or minimalize the problems with dataset. It can distinguish several types of this method. <p>First of all we chose to normalize the image, which can be, for example, by improving brightness of the image.For that we were using image resampling and enhancing the greyscale contrast.</p>
-                        <p>Secondly we decided to denoise the dataset to enhance the quality of imput image. For that we used the several types of filtering. The results are shown below.</p>
-                        <p>Afterwards by using particular types of mathematical operations we tried to further improve the picture by sharping, smoothing or blurring it. Of course, it was depending of the input image. The results can be seen below.</p>
-                        <p> </p>
-                        <p align="center">	<b>Recognizing textures</b></p>
-                        <p align="justify">Texture is another feature that can help to segment images into regions of interest and to classify them. Texture gives us data about the spatial arrangement of the hues or intensities in the image.</p>
-                        <p align="justify">The greatest difficulty in texture analysis is defining what texture is. There are two principal approaches:</p>
-                        <p align="justify">-	structural approach where texture is a kit of basics texels in regular and repeated relations;</p>
-                        <p align="justify">-	statistical approach where texture is a quantitative measure of arrangement of intensities in a given area.</p>
-                        <p align="justify">We found the database with natural pattern of the vegetation and we added a few more for specifying the patterns of particular parts of the flora. We create the negative and positive examples of the scenes in nature. The few of them are showed below. </p>
-                        <p align="center"><img src="images/textures.gif"alt="jpd"/></center> </p>
-                        <p align="justify">We noticed, that this way to recognize the vegetation on the images is dependent of the size of the database, and the quality of the images, so it is not the easiest and effective method to achieve the goal. Other obstacle is that the vegetation has no specify pattern.</p>
-                        <p align="center"><b>Machine learning</b></p>
-                        <p align="justify">We tried to use different classifiers (Gaussian Naive Bayes, SVM, Decision Tree and Random Forest) to optimize model hyper parameters using 10 fold cross validation on training set. Instead of using all features and keeping possibly irrelevant or redundant features that increases the computation time and possibly in the end lead to worse trained model, we decided to use feature selection techniques (removing low variance features, close to constant values), keeping k-best features with respect to information gain and correlation coefficient score, where k is hyper parameter of model that is being optimized.</p>
-                        <p align="justify">Highest accuracy, recall and F1 score were achieved using RandomForrest Classifier (both precision and recall on test set above 90%). SVM with linear kernel provided a bit worse results (70% in both precision and recall) possibly due to small amount of texture data (70 textures for positive and negative samples).</p>
-                        <p align="justify">Downside of machine learning base classifier approach is that is highly dependent on texture dataset.</p>
-                        <p align="justify">To obtain accurate model, large dataset has to be obtained so the model could generalize. That especially goes samples for non-vegetation class.</p>
-                        <p align="justify">The results of some mechanism can be seen below.</p>
-                        <p></p>
-                        <p align="center"><img src="images/11.jpg"alt="jpd"/></center> </p>
-                        <p align="center"><img src="images/21.jpg"alt="jpd"/></center> </p>
-                        <p align="center"><img src="images/31.jpg"alt="jpd"/></center> </p>
-                        <p align="center"><img src="images/41.jpg"alt="jpd"/></center> </p>
-                        <p align="center"><b>Post - processing</b></p>
-                        <p align="justify">After classification, produced image is patchy so we are using simple morphology operations (dilation and erosion) to remove areas too small to be treated as vegetation and to fill in the patchy areas.</p>
+                        <p>
+                            <p align="center"><b>Pre - processing</b></p>
+                            <p align="justify"><p> Preprocessing is an significant and diverse set of image preparation steps. It is used for eliminate or minimalize the problems with dataset. It can distinguish several types of this method. <p>First of all we chose to normalize the image, which can be, for example, by improving brightness of the image.For that we were using image resampling and enhancing the greyscale contrast.</p>
+                            <p>Secondly we decided to denoise the dataset to enhance the quality of imput image. For that we used the several types of filtering. The results are shown below.</p>
+                            <p>Afterwards by using particular types of mathematical operations we tried to further improve the picture by sharping, smoothing or blurring it. Of course, it was depending of the input image. The results can be seen below.</p>
+                            <br/>
+                            <p align="center"><img src="images/clahe.jpg"/> </p>
+                            <p>On the left side we can see the input image (original), and on the right side we applied the CLAHE technique.</p>
+                            <br/>
+                            <p align="center"><img src="images/clahe_gaussean.png"/></p>
+                            <p>On the image above we compared the original image with CLAHE and Gaussian blur applied, and on the right side just with using the Gaussian blur filter.</p>
+                            <br/>
+                            <p align="center"><img src="images/clahe_median.png"/></p>
+                            <p>Here we compared the original image with median blur with CLAHE, and on the right side we present the result after using only CLAHE method.</p>
+                            <br/>
+                            <p align="center"><img src="images/clahe_good.jpg"/></p>
+                            <p>On the image above we successfully applied CLAHE technique, what can be seen is that the method gave us satisfying results, but the model has to be better trained.</p>
+                            <br/>
+                            <p align="center"><img src="images/clahe_bad.jpg"/></p>
+                            <p>As it can be seen, this technique can lead to false results, because it emphasize the patterns which also classifies other negative patterns as being positive.</p>
+                            <br/>
+                            <br/>
+                            <p align="center">	<b>Recognizing textures</b></p>
+                            <p align="justify">Texture is another feature that can help to segment images into regions of interest and to classify them. Texture gives us data about the spatial arrangement of the hues or intensities in the image.</p>
+                            <p align="justify">The greatest difficulty in texture analysis is defining what texture is. There are two principal approaches:</p>
+                            <p align="justify">-	structural approach where texture is a kit of basics texels in regular and repeated relations;</p>
+                            <p align="justify">-	statistical approach where texture is a quantitative measure of arrangement of intensities in a given area.</p>
+                            <p align="justify">We found the database with natural pattern of the vegetation and we added a few more for specifying the patterns of particular parts of the flora. We create the negative and positive examples of the scenes in nature. The few of them are showed below. </p>
+                            <p align="center"><img src="images/textures.gif"alt="jpd"/></p>
+                            <p align="justify">We noticed, that this way to recognize the vegetation on the images is dependent of the size of the database, and the quality of the images, so it is not the easiest and effective method to achieve the goal. Other obstacle is that the vegetation has no specify pattern.</p>
+                            <br/>
+                            <br/>
+                            <p align="center"><b>Machine learning</b></p>
+                            <p align="justify">We tried to use different classifiers (Gaussian Naive Bayes, SVM, Decision Tree and Random Forest) to optimize model hyper parameters using 10 fold cross validation on training set. Instead of using all features and keeping possibly irrelevant or redundant features that increases the computation time and possibly in the end lead to worse trained model, we decided to use feature selection techniques (removing low variance features, close to constant values), keeping k-best features with respect to information gain and correlation coefficient score, where k is hyper parameter of model that is being optimized.</p>
+                            <p align="justify">Highest accuracy, recall and F1 score were achieved using RandomForrest Classifier (both precision and recall on test set above 90%). SVM with linear kernel provided a bit worse results (70% in both precision and recall) possibly due to small amount of texture data (70 textures for positive and negative samples).</p>
+                            <p align="justify">Downside of machine learning base classifier approach is that is highly dependent on texture dataset.</p>
+                            <p align="justify">To obtain accurate model, large dataset has to be obtained so the model could generalize. That especially goes samples for non-vegetation class.</p>
+                            <p align="justify">The results of some mechanism can be seen below.</p>
+                            <br/>
+                            <br/>
+                            <p align="center"><img src="images/11.jpg" alt="jpd"/> </p>
+                            <p align="center"><img src="images/21.jpg" alt="jpd"/> </p>
+                            <p align="center"><img src="images/31.jpg" alt="jpd"/> </p>
+                            <p align="center"><img src="images/41.jpg" alt="jpd"/> </p>
+                            <p align="center"><b>Post - processing</b></p>
+                            <p align="justify">After classification, produced image is patchy so we are using simple morphology operations (dilation and erosion) to remove areas too small to be treated as vegetation and to fill in the patchy areas.</p>
                         </p>
 
                     </div>
                 </div>
                 <div class="footer">
-                    <p><font size="1">Copyright &copy; 2012; Projekt: SzablonyStron.org - <a href="http://szablonystron.org">szablony stron www</a>, <a href="http://linuxlabs.pl/pl,doradztwo">doradzanie serwer linuks</a> dla firm i instytucji oraz <a href="http://ibisal.com">prezentacje multimedialne</a></font></p><!--link_baza_stop-->
+                    <p>&nbsp;</p>
                 </div>
             </div>
 

@@ -84,6 +84,11 @@ select,input,textarea {
   margin:10px 10px 10px 0; }
 .img:hover {}
 
+.content-wrapper img{
+  max-width: 650px;
+  height:auto;
+}
+
 img {
   margin:0;
   padding:0;

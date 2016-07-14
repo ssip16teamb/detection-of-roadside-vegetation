@@ -37,9 +37,14 @@ class Preprocess(object):
         img = cv2.pow(img, correction)
         return np.uint8(img*255)
 
-    def __blurrer(self, image_data):
-        image_blurred = ndimage.gaussian_filter(image_data, sigma=(1, 1, 0), order=0)
-        #image_blurred = cv2.medianBlur(image_data, 3)
+
+
+    def __blurrer_median(self, image_data):
+        image_blurred = cv2.medianBlur(image_data, 3)
+        return image_blurred
+
+    def __blurrer_gaussian(self, image_data):
+        image_blurred = ndimage.gaussian_filter(image_data, sigma=(3, 3, 0), order=0)
         return image_blurred
 
     def __sharpner(self, image_data):
@@ -59,17 +64,15 @@ class Preprocess(object):
 
         return img_output
 
-    def blur_image(self, image_data):
+    def blur_image(self, image_data, mode='median', apply_clahe=True):
         _sharpness = self.__compute_acutance(image_data)
         logger.debug('acutance %.2f', _sharpness)
-        # image_data = self.__deNoise(image_data)
 
-        image_data = self.__clahe(image_data)
+        if apply_clahe:
+            image_data = self.__clahe(image_data)
 
         if _sharpness > 100:
-            image_data = self.__blurrer(image_data)
-        #image_data = self.__uniform(image_data)
-
+            image_data = self.__blurrer_median(image_data) if mode == 'median' else self.__blurrer_gaussian(image_data)
         image_data = self.__gamma_correction(image_data)
         return image_data
 
@@ -77,8 +80,4 @@ class Preprocess(object):
         _sharpness = self.__compute_acutance(image_data)
         image_data = self.__clahe(image_data)
         logger.debug('acutance %.2f', _sharpness)
-        # image_data = self.__sharpner(image_data)
-        #_uniform = self.__uniform(image_data)
-        #_denoise = self.__deNoise(image_data)
-
         return image_data

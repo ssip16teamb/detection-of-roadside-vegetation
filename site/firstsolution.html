@@ -43,7 +43,8 @@
                     </ul>
 
                 </div>
-                <div class="obrazek"></div>
+                <div class="obrazek">
+                    <a href="https://github.com/ssip16teamb/ssip16teamb.github.io"><img style="position: absolute; top: 50px; right: 96px; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a></div>
                 <div class="decoration2"></div>
                 <div class="content">
                     <div class="tekst">
@@ -52,29 +53,28 @@
                         <p align="justify">Perception of colours is very subjective and personal. To try to define numbers to the brains reaction is extremely difficult. The point of colour spaces is to assist the process of describing colour between people, machines and programs.</p>
                         <p align="justify">RGB color system, constructs all the colors from the combination of the Red, Green and Blue colors. Each of them use 8 bits, which have values from 0 to 255.</p>
                         <p align="justify">The highest determination of the RGB color model is for identifying representation, and display of images in electronic devices, for example televisions or computers. Before our ages, the RGB model already had a concrete theory behind, because of human perception of hues.</p>
-
-                        <center><img src="images/rgb.gif"alt="jpd"/></center>
+                        <p align="center"><img src="images/rgb.gif"alt="jpd"/></p>
                         <p align="justify">Other model of the colors representation is HSL and HSV. Both models are easy transformation of RGB models. The colors there depend of the basic components (red, green, blue primaries) and also of the gamma correction used to represent the amounts of those elements. Each RGB device has his own HSL representation to accompany it. Both of the models have advantages and disadvantages, but though this both are used extensively in computer graphics.</p>
-                        <center><img src="images/hsv.gif"alt="jpd"/></center>
+                        <p align="center"><img src="images/hsv.gif"alt="jpd"/></p>
                         <p align="justify">Bearing in mind the informations from above, we created the code in MathLab which recognized the green color from the image. This way is the easiest to distinguish the vegetation from the landscape. Of course, the flora is not always just green, that is why is needed to use post – processing to fill the gaps in defined area. The results of good examples can be seen below.</p>
-                        <p align="center"><img src="images/32.jpg"alt="jpd"/></center> </p>
-                        <p align="center"><img src="images/42.jpg"alt="jpd"/></center> </p>
+                        <p align="center"><img src="images/32.jpg"alt="jpd"/></p>
+                        <p align="center"><img src="images/42.jpg"alt="jpd"/></p>
                         <p align="justify">Unfortunately, the easiest solution was not the best one. Here we can present the bad results.</p>
-                        <p align="center"><img src="images/12.jpg"alt="jpd"/></center> </p>
-                        <p align="center"><img src="images/22.jpg"alt="jpd"/></center> </p>
+                        <p align="center"><img src="images/12.jpg"alt="jpd"/></p>
+                        <p align="center"><img src="images/22.jpg"alt="jpd"/></p>
                         <p align="justify">After that, we decided to make it more complicated.</p>
                         <p align="justify">This simple algorithm takes advantage of the fact that the vegetation is usually green colored. (grass, leafs, etc.). First of all we imported RGB image, than we used pre – processing which is: dilate all non-gray scale pixel's green channel. (Each color channels' intensity must not be 'similar'.) This step's goal is to make the detection easier of those pixels which may are a part of the vegetation regions.</p>
                         <p align="justify">Secondly we had to mark all green pixels. A pixel is considered to be green if the green channel's intensity is greater with at least 10 units than red and blue channel's one. After that we run median filter on the output binary image to decrease the salt-pepper noise which consists of fake detected or missing vegetation pixels. Than was morphologically open then close the current output image to separate the vegetation and non-vegetation regions.</p>
                         <p align="justify">Advantages of this approach are, that it detects precisely the bright green colored vegetation, and clearly skip the gray scale or blue colored objects just like the sky or the road. </p>
                         <p align="justify">Disadvantages are not so significant. The solution detects other (but not all) green objects as vegetation. It also cannot detect the dark or non-green vegetation regions just like shadows.</p>
                         <p align="justify">The results can be seen below.</p>
-                        <p align="center"><img src="images/fs1.gif"alt="jpd"/></center> </p>
-                        <p align="center"><img src="images/fs2.gif"alt="jpd"/></center> </p>
+                        <p align="center"><img src="images/fs1.gif"alt="jpd"/></p>
+                        <p align="center"><img src="images/fs2.gif"alt="jpd"/></p>
                         </p>
                     </div>
                 </div>
                 <div class="footer">
-                    <p><font size="1">Copyright &copy; 2012; Projekt: SzablonyStron.org - <a href="http://szablonystron.org">szablony stron www</a>, <a href="http://linuxlabs.pl/pl,doradztwo">doradzanie serwer linuks</a> dla firm i instytucji oraz <a href="http://ibisal.com">prezentacje multimedialne</a></font></p><!--link_baza_stop-->
+                    <p>&nbsp;</p>
                 </div>
             </div>
 
