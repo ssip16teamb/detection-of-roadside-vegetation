@@ -1,0 +1,20 @@
+Color-based solution -> search for green pixel groups
+
+Description:
+This simple algorithm takes advantage of the fact that the vegetation is usually green colored. (grass, leafs, etc.)
+
+1. Import RGB image.
+Pre-processing:
+2. Dilate all non gray scale pixel's green channel. (Each color channels' intensity must not be 'similar'.)
+   This step's goal is to make the detection easier of those pixels which may are a part of the vegetation regions.
+Main method:
+3. Mark all green pixels. A pixel is considered to be green if the green channel's intensity is greater with at least 10 units than red and blue channel's one.
+Post-processing:
+4. Run median filter on the output binary image to decrease the salt-pepper noise which consists of fake detected or missing vegetation pixels.
+5. Morphologically open then close the current output image to separate the vegetation and non vegetation regions.
+
+Advantages/strong side:
+Detects precisely the bright green colored vegetation, and clearly skip the gray scale or blue colored objects just like the sky or the road.
+
+Disadvantages/weak points:
+Detects other (but not all) green objects as vegetation. It also can not detect the dark or non green vegetation regions just like shadows.
